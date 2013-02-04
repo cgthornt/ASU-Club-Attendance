@@ -1,0 +1,17 @@
+<%= page_title 'Sign Up' %>
+
+<%= pretty_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <%= f.item(:first_name){ f.text_field :first_name } %>
+  <%= f.item(:last_name){ f.text_field :last_name } %>
+  
+  <%= f.item(:email){ f.email_field :email } %>
+  <%= f.item(:password){ f.password_field :password } %>
+  <%= f.item(:password_confirmation){ f.password_field :password_confirmation } %>
+
+
+  <%= f.submit_area 'Sign Up' %>
+<% end %>
+
+<%= render "devise/shared/links" %>

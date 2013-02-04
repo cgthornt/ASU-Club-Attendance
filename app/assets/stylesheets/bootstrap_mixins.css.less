@@ -1,0 +1,44 @@
+
+@import "twitter/bootstrap/bootstrap";
+@import "twitter/bootstrap/responsive";
+
+#error_explanation {
+  .alert;
+  .alert-error;
+  h2 {
+    // .alert-heading;
+    font-size: 15px;
+    padding-bottom: 2px;
+  }
+}
+
+/**
+ * Pretty Form Defs
+ */
+.pretty-form {
+  .field_with_errors {
+    label {
+      color: @errorText;
+    }
+    input {
+      background: errorBackground;
+      color: @errorText;
+      border-color: @errorText;
+    }
+  }
+}
+
+
+/**
+ * Flashes
+ */
+#flashes {
+  .alert-notice {
+    .alert-info;
+  }
+}
+
+table.autogrid {
+  .table;
+  .table-condensed;
+}

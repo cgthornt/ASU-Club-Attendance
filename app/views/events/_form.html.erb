@@ -1,0 +1,4 @@
+<%= form.item(:name) { form.text_field :name } %>
+<%= form.item(:description) { form.text_area :description } %>
+
+<%= form.item(:meeting_start) { form.datetime_range :meeting_start, :meeting_stop } %>

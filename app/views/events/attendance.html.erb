@@ -1,0 +1,47 @@
+<% global_css_js_file("attendance") %>
+
+<% if @member.errors.any? %>
+<div id="error_explanation">
+  <h2>There were some errors signing you in!</h2>
+  <ul><% @member.errors.full_messages.each do |m| %><li><%= m %></li><% end %></ul>
+</div>
+<% end %>
+<div class="hero-unit" id="register-area">
+  <div class="pre-header">
+    <%= @event.name %>
+  </div>
+  <%= page_title @event.club.name %>
+  
+  <!-- Auto ASURITE information -->
+  <div id="asurite-completion">
+    <p>Please enter your my.asu.edu <b>USERNAME</b> below to sign in to this event.</p>
+    <form method="get" id="asuritefun" data-url="<%= url_for :action => 'user_lookup', :format => :json %>" autocomplete="off">
+      <input id="asurite" type="text" placeholder="jsmith">
+      <span id="email-text">
+        @asu.edu
+      </span>
+    </form>
+    <p class="help-text" id="help-text">
+      Press <b>ENTER</b> to continue &sdot; <a href="#" class="manual-lookup">Manual Entry</a>
+    </p>
+  </div>
+  
+  <!-- Manual Entry -->
+  <div id="user-information">
+    <p>
+      Please enter the following user information to continue
+    </p>
+    <%= form_for(@member, :url => {:action => 'submit_attendance', :id => @event.id }, :html => {:class => "form-inline", :autocomplete => 'off'}) do |f| %>
+      <%= f.text_field :first_name, :placeholder => 'First Name' %>
+      <%= f.text_field :last_name, :placeholder => 'Last Name' %>
+      <%= f.text_field :email, :placeholder => 'Email' %>
+      <p style="margin-top:10px">
+        <%= f.submit "Submit", :class => 'btn btn-primary' %>
+        <a href="#" class="manual-lookup" style="font-size: 12px;margin-left: 5px">Automatic Lookup</a>
+      </p>
+    <% end %>
+  </div>
+</div>
+<p style="font-size:11px">
+  <%= link_to("Return to Event", @event) %>
+</p>

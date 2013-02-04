@@ -1,0 +1,19 @@
+<% global_css_js_file("misc/datetime_range") %>
+<div class="datetime-range-form">
+  <%= form.hidden_field from, :class => 'from-hidden-field' %>
+  <%= form.hidden_field to,   :class => 'to-hidden-field' %>
+  
+  <!-- From -->
+  <div class="input-prepend">
+    <span class="add-on"><i class="icon-calendar"></i></span><input type="text" class="date date-from" placeholder="start date" data-type="from">
+  </div>
+  <input type="text" class="time time-from" data-type="from" placeholder="start time">
+  
+  <span class="area-seperator">to</span>
+  
+  <!-- From -->
+  <div class="input-prepend">
+    <span class="add-on"><i class="icon-calendar"></i></span><input type="text" class="date date-to" placeholder="stop date" data-type="to">
+  </div>
+  <input type="text" class="time time-to" data-type="to" placeholder="stop time">
+</div>

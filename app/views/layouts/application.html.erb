@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @page_title %> | ASU Club Member Tracker</title>
+  <%= stylesheet_link_tag    "application", "bootstrap_mixins", "bootstrap/bootstrap/responsive", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= yield :javascripts %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<%= render :partial => 'layouts/navigation' %>
+
+<div class="container">
+  <% unless params[:controller] == "welcome" %>
+  <ul class="breadcrumb">
+    <%= render_breadcrumbs :separator => ' / ' %>
+  </ul>
+<% end %>
+  
+  <% if flash.any? %>
+  <div id="flashes">
+  <% flash.each do |severity,message| %>
+    <div class="alert alert-<%= severity %>">
+      <button class="close" data-dismiss="alert">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+  </div>
+  <% end %>
+  <%= yield %>
+</div>
+</body>
+</html>

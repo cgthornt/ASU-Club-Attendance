@@ -1,0 +1,13 @@
+<div class="hero-unit" id="register-area">
+  <%= page_title "Register for #{@club.name}" %>
+  <p>Please enter your ASURITE id below</p>
+  <form method="get" id="asuritefun" data-url="<%= url_for :action => 'user_lookup', :format => :json %>">
+    <input id="asurite" type="text">
+    <span id="email-text">
+      @asu.edu
+    </span>
+  </form>
+  <p id="help-text">
+    Press <b>ENTER</b> to continue
+  </p>
+</div>

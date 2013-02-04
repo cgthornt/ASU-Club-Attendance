@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @page_title %> | ASU Club Member Tracker</title>
+  <%= stylesheet_link_tag    "application", "bootstrap_mixins", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= yield :javascripts %>
+  <style type="text/css">
+  body {
+    padding-top: 10px;
+  }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <% if flash.any? %>
+  <div id="flashes">
+  <% flash.each do |severity,message| %>
+    <div class="alert alert-<%= severity %>">
+      <button class="close" data-dismiss="alert">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+  </div>
+  <% end %>
+  <%= yield %>
+</div>
+</body>
+</html>

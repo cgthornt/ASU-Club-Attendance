@@ -1,0 +1,29 @@
+<%= page_title @club.name %>
+<p><%= @club.description %></p>
+<div class="row">
+  <div class="span6">
+    <h2>Upcoming Events <small><%= @club.events.upcoming.count %> total</small></h2>
+    <ul>
+    <% @club.events.upcoming.order("meeting_start ASC").each do |event| %>
+      <li><%= link_to event.name, event %> <%= event.meeting_start.strftime("%b %d") %></li> 
+    <% end %>
+    </ul>
+    <p>
+      <%= link_to 'All Events', events_path %>
+    </p>
+  </div>
+  <div class="span6">
+    <h2>Top 10 Members</h2>
+    <ul>
+    <% @club.members.with_statistics(@club.events.count).top.limit(10).each do |m| %>
+      <li><%= m.full_name %> <em><%= m.attendance_count %> - <%= number_to_percentage (m.attendance_percent * 100), :precision => 2 %></em>
+    <% end %>
+    </ul>
+    <%= link_to 'All Members', members_path %>
+  </div>
+</div>
+
+<div class="form-actions">
+  <%= link_to 'Edit', edit_club_path(@club), :class => 'btn btn-primary' %>
+  <%= link_to 'New Event', new_event_path, :class => 'btn' %>
+</div>

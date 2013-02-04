@@ -1,0 +1,43 @@
+<%= page_title @event.name, @event.club.name %>
+<p>
+  <%= @event.description %>
+</p>
+<div class="row">
+  <div class="span6">
+    <h2>Existing Members <small><%= @event.existing_members.count %> total</small></h2>
+    <% if @event.existing_members.any? %>
+      <p>These people have signed up for other meetings</p>
+      <ul>
+      <% @event.existing_members.each do |m| %>
+      <li><%= m.full_name %> (<a href="mailto:<%= m.email %>"><%= m.email %></a>)</li>
+      <% end %>
+      </ul>
+    <% else %>
+      <p>
+        No existing members have signed up to this meeting.
+      </p>
+    <% end %>
+  </div>
+  
+  <div class="span6">
+    <h2>New Members <small><%= @event.new_members.count %> total</small></h2>
+    <% if @event.new_members.any? %>
+      <p>This was the first event for these members</p>
+      <ul>
+        <% @event.new_members.each do |m| %>
+        <li><%= m.full_name %> (<a href="mailto:<%= m.email %>"><%= m.email %></a>)</li>
+      <% end %>
+      </ul>
+    <% else %>
+      <p>No new members have signed up for this meeting!</p>
+    <% end %>
+  </div>
+  
+</div>
+
+
+<div class="form-actions">
+  <%= link_to 'Edit Event', edit_event_path(@event), :class => 'btn btn-primary' %>
+  <%= link_to 'Take Attendance', {:action => 'attendance', :id => @event.id} , :class => 'btn' %>
+  <%= link_to 'Cancel', events_path, :class => 'btn' %>
+</div>

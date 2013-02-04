@@ -1,0 +1,7 @@
+<%= page_title "Edit Event", @event.club.name %>
+<%= pretty_form_for(@event) do |f| %>
+  <%= render :partial => 'form', :object => f %>
+  <%= f.submit_area do %>
+    <%= link_to 'Cancel', @event, :class => 'btn' %>  
+  <% end %>
+<% end %>
