@@ -1,14 +1,12 @@
 set :application, "clubtrack"
-set :repository,  "https://svn.cgthornt.com/misc/clubtrack"
+set :scm, 'git'
+set :repository,  "git@github.com:cgthornt/ASU-Club-Attendance.git"
 default_run_options[:pty] = true
 
 set :deploy_to, "/home/christopher/clubtrack"
 set :deploy_via, :copy
 set :copy_strategy, :export
 
-
-set :scm, :subversion
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 role :web, "cgthornt.com"                          # Your HTTP server, Apache/etc
 role :app, "cgthornt.com"                          # This may be the same as your `Web` server
