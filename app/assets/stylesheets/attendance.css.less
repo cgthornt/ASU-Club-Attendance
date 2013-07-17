@@ -1,3 +1,5 @@
+@form-field-width: 200px;
+
 #register-area {
   padding-top: 15px;
   .pre-header {
@@ -28,6 +30,23 @@
   
   form {
     margin-bottom: 0;
+  }
+
+  .label-magic label, .field-magic input {
+    width: @form-field-width;
+  }
+
+  .label-magic label {
+    width: @form-field-width + 20;
+    font-size: 12px;
+    color: #333;
+    font-weight: bold;
+    line-height: auto;
+    margin: 0;
+  }
+
+  .label-magic {
+    margin-left: 3px;
   }
   
   #user-information {

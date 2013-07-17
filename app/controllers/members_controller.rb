@@ -3,9 +3,8 @@ class MembersController < ApplicationController
   
   
   def index
-    @grid = autogrid Member.where(:club_id => @curr_club.id) do |g|
-      g.col :email, :first_name, :last_name
-      g.col 'attendances.count', :name => 'Attendance'
-    end
+    @members = current_club.members.
+        with_statistics(current_club.events.count).top
+    return export_members(@members) if params[:export]
   end
 end

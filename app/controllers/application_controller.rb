@@ -4,7 +4,12 @@ class ApplicationController < ActionController::Base
   before_filter :load_current_club
   
   protected
-  
+
+  def export_members(members)
+    data = members.export_format_scope
+    send_data data, filename: 'members.txt', type: 'text/plain'
+  end
+
   def load_current_club
     @curr_club = current_club
   end

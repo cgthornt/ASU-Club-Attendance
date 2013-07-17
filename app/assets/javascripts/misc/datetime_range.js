@@ -56,9 +56,10 @@ $(function() {
   });
   
   // Time Picker
-  $(".datetime-range-form .time").timePicker({
-    show24Hours: false,
-    step: 30
+
+  $(".datetime-range-form .time").timepicker({
+    //show24Hours: false,
+    //step: 30
   });
   
   $(".datetime-range-form .time").change(function() {

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '4.0.0'
+ruby '1.9.3'
 
 
 gem 'mysql2'
@@ -9,16 +10,16 @@ gem 'json'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'less-rails'
 
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem "libv8", "3.3.10.2"
-  gem "therubyracer", "0.10.2", :require => 'v8'
+  # gem "libv8"
+  gem "therubyracer", :require => 'v8'
 
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier'
 end
 
 
@@ -39,6 +40,10 @@ gem 'capistrano'
 gem 'kaminari'
 gem 'nokogiri'
 
-gem 'autogrid'
 
 gem "breadcrumbs_on_rails"
+gem 'protected_attributes'
+gem 'haml'
+gem 'thin'
+gem 'kaminari'
+gem 'kaminari-bootstrap'

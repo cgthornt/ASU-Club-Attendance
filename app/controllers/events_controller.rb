@@ -8,11 +8,7 @@ class EventsController < ApplicationController
   
   
   def index
-    @events = Event.where(:club_id => @curr_club.id)
-    @grid = autogrid @events do |g|
-      g.col :name, :meeting_start, :meeting_stop
-      g.col 'attendances.count', :name => 'Attendance'
-    end
+    @events = Event.where(:club_id => @curr_club.id).order('meeting_stop DESC')
   end
   
   def new
@@ -20,6 +16,12 @@ class EventsController < ApplicationController
   end
   def show
     add_breadcrumb "Events", events_path
+    if ex = params[:export]
+      s = @event.new_members      if ex == 'new'
+      s = @event.existing_members if ex == 'existing'
+      s = @event.members          if ex == 'all'
+      return export_members(s) if s
+    end
   end
   def edit
      add_breadcrumb "Events", events_path
@@ -69,7 +71,7 @@ class EventsController < ApplicationController
     
     # Already attended
     if @event.attendances.where(:member_id => @member.id).any?
-      flash[:success] = "You've already signed in #{@member.first_name}"
+      flash[:success] = "You've already signed in, #{@member.first_name}!"
     else
       attendance = @event.attendances.new do |a|
         a.member_id    = @member.id
@@ -87,29 +89,47 @@ class EventsController < ApplicationController
   
   
   def user_lookup
-   begin
-      url = URI.parse("https://webapp4.asu.edu/directory/ws/search?asuriteId=" + CGI::escape(params[:asurite]))
-      http = Net::HTTP.new(url.host, url.port)
-      http.use_ssl = true
-      result = http.get(url.path + "?" + url.query)
-      xml = Nokogiri::XML(result.body)
-      
-      data = {
-        :first_name => xml.xpath("//firstName[1]").text,
-        :last_name  => xml.xpath("//lastName[1]").text,
-        :email      => xml.xpath("//email[1]").text
+    data = nil
+    success = false
+
+    # Lookup existing email - save time!
+    lookup = current_club.members.where('asurite = :p OR email = :p', p: params[:asurite]).first
+    unless lookup.nil?
+      success = true
+      data    = {
+          first_name: lookup.first_name,
+          last_name:  lookup.last_name,
+          email:      lookup.email,
+          asurite:    lookup.asurite
       }
-      
-      success = !data[:email].blank?
-      
-      respond_to do |format|
-        format.json { render :json => {:success => success, :data => data}}
+    end
+
+    begin
+      if data.nil?
+        url = URI.parse("https://webapp4.asu.edu/directory/ws/search?asuriteId=" + CGI::escape(params[:asurite]))
+        http = Net::HTTP.new(url.host, url.port)
+        http.use_ssl = true
+        result = http.get(url.path + "?" + url.query)
+        xml = Nokogiri::XML(result.body)
+
+        data = {
+          :first_name => xml.xpath("//firstName[1]").text,
+          :last_name  => xml.xpath("//lastName[1]").text,
+          :email      => xml.xpath("//email[1]").text,
+          :asurite    => xml.xpath("//asuriteId[1]").text
+        }
+
+        success = !data[:email].blank?
       end
-      
+
     rescue Exception
       respond_to do |format|
         format.json { render :json => {:success => false}}
       end
+    end
+
+    respond_to do |format|
+      format.json { render :json => {:success => success, :data => data}}
     end
   end
   

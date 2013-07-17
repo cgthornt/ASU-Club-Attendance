@@ -1,0 +1,29 @@
+= page_title "Members", @curr_club.name
+
+- if @members.any?
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th Rank
+        %th Name
+        %th Email
+        %th Attendance Count
+    %tbody
+      - @members.each_with_index do |member,index|
+        %tr
+          %td= index + 1
+          %td= member.full_name
+          %td
+            %a{href: "mailto:#{member.email}"}= member.email
+          %td= member.attendance_count
+
+  %p
+    = link_to 'Export Data', export: true
+
+- else
+  %p
+    %b You don't have any members!
+    Create an event and take attendance to assign members!
+
+.form-actions
+  = link_to "Cancel", @curr_club, :class => 'btn'

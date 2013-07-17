@@ -1,0 +1,26 @@
+= page_title 'My Clubs'
+
+
+
+- if @clubs.any?
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th Name
+        %th Description
+        %th Actions
+    %tbody
+      - @clubs.each do |club|
+        %tr
+          %td= club.name
+          %td= club.description
+          %td
+            = link_to 'View Club', club, class: 'btn btn-small'
+
+- else
+  %p
+    %b You don't have any clubs!
+    Click the link below to make a club.
+
+.form-actions
+  = link_to 'Create Club', new_club_path, class: 'btn btn-primary'

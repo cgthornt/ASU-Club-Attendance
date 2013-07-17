@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -8,70 +9,71 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120824215830) do
+ActiveRecord::Schema.define(version: 20130717035503) do
 
-  create_table "attendances", :force => true do |t|
+  create_table "attendances", force: true do |t|
     t.integer  "event_id"
     t.integer  "member_id"
     t.datetime "signed_in_at"
-    t.boolean  "first_event",  :default => true
+    t.boolean  "first_event",  default: true
   end
 
-  add_index "attendances", ["event_id", "member_id"], :name => "index_attendances_on_meeting_id_and_member_id"
-  add_index "attendances", ["member_id", "event_id"], :name => "index_attendances_on_member_id_and_meeting_id"
-  add_index "attendances", ["member_id", "first_event"], :name => "index_attendances_on_member_id_and_first_event"
+  add_index "attendances", ["event_id", "member_id"], name: "index_attendances_on_meeting_id_and_member_id", using: :btree
+  add_index "attendances", ["member_id", "event_id"], name: "index_attendances_on_member_id_and_meeting_id", using: :btree
+  add_index "attendances", ["member_id", "first_event"], name: "index_attendances_on_member_id_and_first_event", using: :btree
 
-  create_table "clubs", :force => true do |t|
+  create_table "clubs", force: true do |t|
     t.integer  "user_id"
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "clubs", ["user_id"], :name => "index_clubs_on_user_id"
+  add_index "clubs", ["user_id"], name: "index_clubs_on_user_id", using: :btree
 
-  create_table "events", :force => true do |t|
+  create_table "events", force: true do |t|
     t.integer  "club_id"
     t.string   "name"
     t.string   "description"
     t.datetime "meeting_start"
     t.datetime "meeting_stop"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "events", ["club_id"], :name => "index_meetings_on_club_id"
+  add_index "events", ["club_id"], name: "index_meetings_on_club_id", using: :btree
 
-  create_table "members", :force => true do |t|
+  create_table "members", force: true do |t|
     t.integer  "club_id"
     t.string   "email"
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "asurite"
   end
 
-  add_index "members", ["club_id", "email"], :name => "index_members_on_club_id_and_email"
-  add_index "members", ["club_id"], :name => "index_members_on_club_id"
+  add_index "members", ["club_id", "email"], name: "index_members_on_club_id_and_email", using: :btree
+  add_index "members", ["club_id"], name: "index_members_on_club_id", using: :btree
 
-  create_table "roles", :force => true do |t|
+  create_table "roles", force: true do |t|
     t.string "name"
     t.string "description"
     t.string "system_name"
   end
 
-  add_index "roles", ["system_name"], :name => "index_roles_on_system_name"
+  add_index "roles", ["system_name"], name: "index_roles_on_system_name", using: :btree
 
-  create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",          default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -80,22 +82,22 @@ ActiveRecord::Schema.define(:version => 20120824215830) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        :default => 0
+    t.integer  "failed_attempts",        default: 0
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "role_id"
   end
 
-  add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
-  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-  add_index "users", ["role_id"], :name => "index_users_on_role_id"
-  add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
 end

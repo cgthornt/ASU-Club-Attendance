@@ -14,16 +14,13 @@
   
   <!-- Auto ASURITE information -->
   <div id="asurite-completion">
-    <p>Please enter your my.asu.edu <b>USERNAME</b> below to sign in to this event.</p>
+    <p>Please enter your <b>my.asu.edu username</b> or another email address below to sign in to this event.</p>
     <form method="get" id="asuritefun" data-url="<%= url_for :action => 'user_lookup', :format => :json %>" autocomplete="off">
-      <input id="asurite" type="text" placeholder="jsmith">
-      <span id="email-text">
+      <input id="asurite" type="text" placeholder="ASU Username or Email">
+      <!-- <span id="email-text">
         @asu.edu
-      </span>
+      </span> -->
     </form>
-    <p class="help-text" id="help-text">
-      Press <b>ENTER</b> to continue &sdot; <a href="#" class="manual-lookup">Manual Entry</a>
-    </p>
   </div>
   
   <!-- Manual Entry -->
@@ -32,15 +29,31 @@
       Please enter the following user information to continue
     </p>
     <%= form_for(@member, :url => {:action => 'submit_attendance', :id => @event.id }, :html => {:class => "form-inline", :autocomplete => 'off'}) do |f| %>
-      <%= f.text_field :first_name, :placeholder => 'First Name' %>
-      <%= f.text_field :last_name, :placeholder => 'Last Name' %>
-      <%= f.text_field :email, :placeholder => 'Email' %>
+      <div class="label-magic">
+        <%= f.label :first_name %>
+        <%= f.label :last_name %>
+        <%= f.label :email %>
+      </div>
+
+      <div class="fields-magic">
+
+        <%= f.text_field :first_name, :placeholder => 'Sparky' %>
+        <%= f.text_field :last_name, :placeholder => 'Sundevil' %>
+        <%= f.text_field :email, :placeholder => 'sparky@asu.edu' %>
+      </div>
+
+      <%= f.hidden_field :asurite %>
+
       <p style="margin-top:10px">
         <%= f.submit "Submit", :class => 'btn btn-primary' %>
         <a href="#" class="manual-lookup" style="font-size: 12px;margin-left: 5px">Automatic Lookup</a>
       </p>
     <% end %>
   </div>
+
+  <div class="help-text" id="help-text">
+    Press ENTER to continue &sdot; <a href="#" class="manual-lookup">Manual Entry</a>
+   </div>
 </div>
 <p style="font-size:11px">
   <%= link_to("Return to Event", @event) %>

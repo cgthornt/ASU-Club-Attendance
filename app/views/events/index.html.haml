@@ -1,0 +1,31 @@
+= page_title "Events", @curr_club.name
+
+- if @events.any?
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th Name
+        %th Description
+        %th Start
+        %th Stop
+        %th Actions
+    %tbody
+      - @events.each do |event|
+        %tr
+          %td= event.name
+          %td= event.description
+          %td= event.meeting_start
+          %td= event.meeting_stop
+          %td
+            = link_to 'View', event, class: 'btn btn-small'
+
+- else
+  %p
+    %b You don't have any events!
+    Click the link below to make an event.
+
+
+
+.form-actions
+  = link_to 'New Event', new_event_path, class: 'btn btn-primary'
+  = link_to 'Cancel', @curr_club, class: 'btn'

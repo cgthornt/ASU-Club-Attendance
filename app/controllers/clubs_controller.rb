@@ -4,9 +4,7 @@ class ClubsController < ApplicationController
   before_filter :default_breadcrumbs
   
   def index
-    @grid= autogrid @clubs do |g|
-      g.col :id, :name, "user.email"
-    end
+
   end
   
   def new; end
