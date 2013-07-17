@@ -14,6 +14,10 @@ role :web, "cgthornt.com"                          # Your HTTP server, Apache/et
 role :app, "cgthornt.com"                          # This may be the same as your `Web` server
 role :db,  "cgthornt.com", :primary => true       # This is where Rails migrations will run
 
+
+# Run Migrations
+after "deploy:update_code", "deploy:migrate"
+
 # if you want to clean up old releases on each deploy uncomment this:
 after "deploy:restart", "deploy:cleanup"
 

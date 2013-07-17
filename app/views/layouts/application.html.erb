@@ -2,11 +2,11 @@
 <html>
 <head>
   <title><%= @page_title %> | ASU Club Member Tracker</title>
-  <%= stylesheet_link_tag    "application", "bootstrap_mixins", "bootstrap/bootstrap/responsive", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "application", "bootstrap_mixins", "bootstrap/bootstrap/responsive", :media => "all", 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= yield :javascripts %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 </head>
 <body>
 <%= render :partial => 'layouts/navigation' %>

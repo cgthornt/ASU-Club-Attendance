@@ -47,6 +47,9 @@ gem 'thin'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 
+gem 'turbolinks'
+gem 'jquery-turbolinks'
+
 group :development do
   gem 'capistrano'
   gem 'rvm-capistrano'

@@ -5,7 +5,7 @@
 
   
       <!-- Profile -->
-      <div class="btn-group pull-right">
+      <div class="btn-group pull-right" data-no-turbolink>
         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
           <i class="icon-user"></i> <%= user_signed_in? ? current_user.email : "Profile" %>
           <span class="caret"></span>
