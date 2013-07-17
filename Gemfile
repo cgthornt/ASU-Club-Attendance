@@ -36,7 +36,6 @@ gem "kaminari"
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Deploy with Capistrano
-gem 'capistrano'
 gem 'kaminari'
 gem 'nokogiri'
 
@@ -47,3 +46,8 @@ gem 'haml'
 gem 'thin'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
+
+group :development do
+  gem 'capistrano'
+  gem 'rvm-capistrano'
+end

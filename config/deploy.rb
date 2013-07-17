@@ -8,6 +8,8 @@ set :deploy_via, :copy
 set :copy_strategy, :export
 
 
+set :rvm_type, :system
+
 role :web, "cgthornt.com"                          # Your HTTP server, Apache/etc
 role :app, "cgthornt.com"                          # This may be the same as your `Web` server
 role :db,  "cgthornt.com", :primary => true       # This is where Rails migrations will run
@@ -28,3 +30,4 @@ namespace :deploy do
 end
 
 require "bundler/capistrano"
+require "rvm/capistrano"
