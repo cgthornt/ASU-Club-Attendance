@@ -1,0 +1,7 @@
+# Whoa whoa whoa, it's MAGIC!!
+---
+
+# This is a development account - I wouldn't actually put a production key on github!
+google_oauth:
+  app_id: '495063799431.apps.googleusercontent.com'
+  app_secret: 'M6r8J-uGUr_EOIxxBvrpDuDB'

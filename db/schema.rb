@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130726020052) do
+ActiveRecord::Schema.define(version: 20130726040736) do
 
   create_table "attendances", force: true do |t|
     t.integer  "event_id"
@@ -92,10 +92,12 @@ ActiveRecord::Schema.define(version: 20130726020052) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "role_id"
+    t.string   "omniauth_type"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email", "omniauth_type"], name: "index_users_on_email_and_omniauth_type", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree

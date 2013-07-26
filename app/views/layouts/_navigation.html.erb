@@ -17,8 +17,11 @@
           <li class="divider"></li> -->
           <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
         <% else %>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-          <li><%= link_to 'Register', new_user_registration_path %></li>
+          <li><%= link_to 'Sign In via ASU', user_omniauth_authorize_path(:google_oauth2) %></li>
+          <!--
+          <li class="divider"></li>
+          <li><%# link_to 'Sign In', new_user_session_path %></li>
+          <li><%# link_to 'Register', new_user_registration_path %></li> -->
         <% end %>
         </ul>
       </div>

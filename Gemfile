@@ -26,6 +26,8 @@ end
 gem 'jquery-rails'
 gem 'cancan'
 gem 'devise'
+gem 'omniauth-google-oauth2'
+gem 'settingslogic'
 
 # Assets
 gem 'less-rails-bootstrap', '~> 2.1.0'
@@ -55,4 +57,5 @@ gem 'wice_grid'
 group :development do
   gem 'capistrano'
   gem 'rvm-capistrano'
+  gem 'quiet_assets'
 end

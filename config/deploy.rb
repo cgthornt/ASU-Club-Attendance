@@ -39,5 +39,17 @@ namespace :deploy do
    end
 end
 
+namespace :config do
+
+  task :copy do
+    run "cp -R #{shared_path}/config/* #{latest_release}/config/"
+  end
+
+
+end
+
+before 'deploy:restart', 'config:copy'
+
+
 require "bundler/capistrano"
 require "rvm/capistrano"
