@@ -4,14 +4,15 @@
 
 - if @clubs.any?
   = grid @grid do |g|
-    - g.column name: 'Name', attribute: 'name'
-    - g.column name: 'Description', attribute: 'description'
+    - g.column name: 'Name', attribute: 'name' do |club|
+      - link_to club.name, club
+    - g.column name: 'Description', attribute: 'description' do |club|
+      - truncate club.description
     - g.column name: 'Owner', attribute: 'last_name', model: User do |club|
       - club.user.full_name
-    - g.column name: 'Member Since', attribute: 'created_at' do |club|
+    - g.column name: 'Club Since', attribute: 'created_at' do |club|
       - club.created_at.to_date
-    - g.column name: 'Actions' do |club|
-      - link_to 'View', club, class: 'btn btn-small'
+
 
 
 - else

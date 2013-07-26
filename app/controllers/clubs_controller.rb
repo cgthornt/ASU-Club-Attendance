@@ -21,4 +21,16 @@ class ClubsController < ApplicationController
   def show
     session[:club_id] = @club.id
   end
+
+
+  def destroy
+    if @club.destroy
+      session.delete :club_id
+      flash[:success] = 'Club has been purged from database!'
+      redirect_to :root
+    else
+      flash[:error] = 'Unable to delete club!'
+      render action: :show
+    end
+  end
 end

@@ -1,7 +1,7 @@
 class Member < ActiveRecord::Base
   belongs_to :club
   has_and_belongs_to_many :events, :join_table => 'attendances'
-  has_many :attendances
+  has_many :attendances, dependent: :destroy
   validates_presence_of :first_name, :last_name, :email
   validates_uniqueness_of :email, :scope => :club_id
   
