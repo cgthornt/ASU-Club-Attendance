@@ -23,9 +23,9 @@
     - g.column name: 'Attendance', attribute: 'id', filter: false do |member|
       - "#{member.attendance_count} <small>#{number_to_percentage member.attendance_percent * 100, precision: 1}</small>".html_safe
     - g.column name: 'First Seen' do |member|
-      - I18n.l member.first_seen_at, format: :short
+      - member.first_seen_at.to_date
     - g.column name: 'Last Seen' do |member|
-      - I18n.l member.last_seen_at, format: :short
+      - member.last_seen_at.to_date
 
 
   %p
