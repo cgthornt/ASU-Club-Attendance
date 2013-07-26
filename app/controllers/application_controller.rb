@@ -2,7 +2,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   load_and_authorize_resource :unless => :devise_controller?
   before_filter :load_current_club
-  
+
+
+  before_filter :configure_devise_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_devise_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :first_name, :last_name) }
+  end
+
   protected
 
   def export_members(members)

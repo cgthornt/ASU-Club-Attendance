@@ -4,7 +4,7 @@ gem 'rails', '4.0.0'
 ruby '1.9.3'
 
 
-gem 'mysql2'
+gem 'mysql2', '0.3.12'
 gem 'json'
 
 # Gems used only for assets and not required

@@ -1,7 +1,7 @@
 <%= page_title 'Sign Up' %>
 
 <%= pretty_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  <%# devise_error_messages! %>
 
   <%= f.item(:first_name){ f.text_field :first_name } %>
   <%= f.item(:last_name){ f.text_field :last_name } %>
