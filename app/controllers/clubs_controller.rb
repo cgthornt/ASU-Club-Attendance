@@ -4,7 +4,7 @@ class ClubsController < ApplicationController
   before_filter :default_breadcrumbs
   
   def index
-
+    @grid = initialize_grid @clubs.includes(:user)
   end
   
   def new; end

@@ -1,21 +1,32 @@
 = page_title "Members", @curr_club.name
 
+.well.well-small
+  = form_tag({}, method: :get, class: 'form-inline') do
+    %p View members who attended an event in the range:
+    = date_field_tag 'date_start', @date_start
+    to
+    = date_field_tag 'date_stop', @date_stop
+    = submit_tag 'Submit', class: 'btn'
+    = link_to 'This Semester', {action: 'index'}, class: 'btn btn-link'
+    = link_to 'All Data', {action: 'index', date_start: '', date_stop: ''}, class: 'btn btn-link'
+
+
+%p
+  Show members
+
 - if @members.any?
-  %table.table.table-condensed
-    %thead
-      %tr
-        %th Rank
-        %th Name
-        %th Email
-        %th Attendance Count
-    %tbody
-      - @members.each_with_index do |member,index|
-        %tr
-          %td= index + 1
-          %td= member.full_name
-          %td
-            %a{href: "mailto:#{member.email}"}= member.email
-          %td= member.attendance_count
+  = grid @grid do |g|
+    - g.column name: 'First Name', attribute: 'first_name'
+    - g.column name: 'Last Name', attribute: 'last_name'
+    - g.column name: 'Email', attribute: 'email' do |member|
+      - mail_to member.email, member.email
+    - g.column name: 'Attendance', attribute: 'id', filter: false do |member|
+      - "#{member.attendance_count} <small>#{number_to_percentage member.attendance_percent * 100, precision: 1}</small>".html_safe
+    - g.column name: 'First Seen' do |member|
+      - I18n.l member.first_seen_at, format: :short
+    - g.column name: 'Last Seen' do |member|
+      - I18n.l member.last_seen_at, format: :short
+
 
   %p
     = link_to 'Export Data', export: true

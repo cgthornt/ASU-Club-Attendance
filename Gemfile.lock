@@ -157,6 +157,8 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     warden (1.2.3)
       rack (>= 1.0)
+    wice_grid (3.2.1)
+      kaminari (>= 0.13.0)
 
 PLATFORMS
   ruby
@@ -187,3 +189,4 @@ DEPENDENCIES
   thin
   turbolinks
   uglifier
+  wice_grid

@@ -3,19 +3,16 @@
 
 
 - if @clubs.any?
-  %table.table.table-condensed
-    %thead
-      %tr
-        %th Name
-        %th Description
-        %th Actions
-    %tbody
-      - @clubs.each do |club|
-        %tr
-          %td= club.name
-          %td= club.description
-          %td
-            = link_to 'View Club', club, class: 'btn btn-small'
+  = grid @grid do |g|
+    - g.column name: 'Name', attribute: 'name'
+    - g.column name: 'Description', attribute: 'description'
+    - g.column name: 'Owner', attribute: 'last_name', model: User do |club|
+      - club.user.full_name
+    - g.column name: 'Member Since', attribute: 'created_at' do |club|
+      - club.created_at.to_date
+    - g.column name: 'Actions' do |club|
+      - link_to 'View', club, class: 'btn btn-small'
+
 
 - else
   %p

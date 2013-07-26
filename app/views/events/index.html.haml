@@ -1,23 +1,14 @@
 = page_title "Events", @curr_club.name
 
 - if @events.any?
-  %table.table.table-condensed
-    %thead
-      %tr
-        %th Name
-        %th Description
-        %th Start
-        %th Stop
-        %th Actions
-    %tbody
-      - @events.each do |event|
-        %tr
-          %td= event.name
-          %td= event.description
-          %td= event.meeting_start
-          %td= event.meeting_stop
-          %td
-            = link_to 'View', event, class: 'btn btn-small'
+  = grid @grid do |g|
+    - g.column name: 'Name', attribute: 'name'
+    - g.column name: 'Start Time', attribute: 'meeting_start'
+    - g.column name: 'Stop Time', attribute: 'meeting_stop'
+    - g.column name: 'Attendance', attribute: 'id', model: Attendance, filter: false do |event|
+      - event.attendance_count
+    - g.column do |event|
+      - link_to 'View', event, class: 'btn btn-small'
 
 - else
   %p

@@ -11,6 +11,7 @@
  *= require_self
  *= require form
  *= require jquery.ui.datepicker
+ *= require wice_grid
  *= require_tree ./plugins/
  */
 body {

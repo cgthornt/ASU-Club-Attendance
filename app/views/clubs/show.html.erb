@@ -14,8 +14,9 @@
   </div>
   <div class="span6">
     <h2>Top 10 Members</h2>
+    <p>Displayed members are only for this semester.</p>
     <ul>
-    <% @club.members.with_statistics(@club.events.count).top.limit(10).each do |m| %>
+    <% @club.members.current_semester.with_statistics(@club.events.count).top.limit(10).each do |m| %>
       <li><%= m.full_name %> <em><%= m.attendance_count %> - <%= number_to_percentage (m.attendance_percent * 100), :precision => 2 %></em>
     <% end %>
     </ul>
@@ -24,6 +25,6 @@
 </div>
 
 <div class="form-actions">
-  <%= link_to 'Edit', edit_club_path(@club), :class => 'btn btn-primary' %>
+  <%# link_to 'Edit', edit_club_path(@club), :class => 'btn btn-primary' %>
   <%= link_to 'New Event', new_event_path, :class => 'btn' %>
 </div>

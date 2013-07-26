@@ -19,7 +19,7 @@ role :db,  "cgthornt.com", :primary => true       # This is where Rails migratio
 after "deploy:update_code", "deploy:migrate"
 
 # if you want to clean up old releases on each deploy uncomment this:
-after "deploy:restart", "deploy:cleanup"
+# safter "deploy:restart", "deploy:cleanup"
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts

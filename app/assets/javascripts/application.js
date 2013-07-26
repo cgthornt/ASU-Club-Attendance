@@ -15,6 +15,7 @@
 // require turbolinks // Someday you will be enabled...
 //= require twitter/bootstrap
 //= require jquery.ui.datepicker
+//= require wice_grid
 //= require_tree ./plugins/
 
 $(function() {

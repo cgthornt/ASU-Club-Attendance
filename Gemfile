@@ -50,6 +50,8 @@ gem 'kaminari-bootstrap'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 
+gem 'wice_grid'
+
 group :development do
   gem 'capistrano'
   gem 'rvm-capistrano'
