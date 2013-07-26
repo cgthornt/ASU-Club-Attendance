@@ -9,7 +9,8 @@ class EventsController < ApplicationController
   
   def index
     @events = Event.select('events.*, COUNT(event_id) AS attendance_count').
-        where(:club_id => @curr_club.id).joins(:attendances).group('event_id')
+        where(:club_id => @curr_club.id).joins('LEFT JOIN `attendances` ON `attendances`.`event_id` = `events`.`id`').
+        group('event_id')
     @grid = initialize_grid @events, order: 'events.meeting_start', order_direction: 'ASC',
         custom_order: { 'attendances.id' => 'attendance_count'}
   end
