@@ -3,29 +3,7 @@
     <div class="container">
       <%= link_to 'Club Tracker', :root, :class => 'brand' %>
 
-  
-      <!-- Profile -->
-      <div class="btn-group pull-right" data-no-turbolink>
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-          <i class="icon-user"></i> <%= user_signed_in? ? current_user.email : "Profile" %>
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-        <% if user_signed_in? %>
-          <!--
-          <li><%= link_to 'Profile', current_user %></li>
-          <li class="divider"></li> -->
-          <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
-        <% else %>
-          <li><%= link_to 'Sign In via ASU', user_omniauth_authorize_path(:google_oauth2) %></li>
-          <!--
-          <li class="divider"></li>
-          <li><%# link_to 'Sign In', new_user_session_path %></li>
-          <li><%# link_to 'Register', new_user_registration_path %></li> -->
-        <% end %>
-        </ul>
-      </div>
-      
+
       <!-- Left Menu -->
       <div class="nav-collapse">
         <ul class="nav">
@@ -35,7 +13,19 @@
             <li><%= link_to 'Events', events_path %></li>
             <li><%= link_to 'Members', members_path %></li>
           <% end %>
-          
+        </ul>
+
+        <!-- Profile -->
+        <ul class="nav pull-right">
+          <% if user_signed_in? %>
+            <li><a>Welcome, <%= current_user.first_name %>!</a></li>
+            <li class="divider-vertical"></li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, confirm: 'Are you sure you want to sign out?' %></li>
+          <% else %>
+            <li><a>Welcome, Guest!</a></li>
+            <li class="divider-vertical"></li>
+            <li><%= link_to 'Sign In via ASU',  user_omniauth_authorize_path(:google_oauth2) %></li>
+          <% end %>
         </ul>
       </div>
     </div>
