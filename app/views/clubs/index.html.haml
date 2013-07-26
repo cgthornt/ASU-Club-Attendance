@@ -1,5 +1,9 @@
 = page_title 'My Clubs'
 
+- if current_user.max_clubs_reached?
+  .alert.alert-info
+    You have reached the maximum number of clubs you can create.
+
 
 
 - if @clubs.any?
@@ -21,4 +25,5 @@
     Click the link below to make a club.
 
 .form-actions
-  = link_to 'Create Club', new_club_path, class: 'btn btn-primary'
+  - if can? :create, Club
+    = link_to 'Create Club', new_club_path, class: 'btn btn-primary'

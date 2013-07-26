@@ -1,4 +1,7 @@
 <%= page_title 'Create Club' %>
+<div class="alert alert-info">
+  You can create a maximum of <%= User::MAX_CLUB_COUNT %> clubs.
+</div>
 <%= pretty_form_for(@club) do |f| %>
   <%= render :partial => 'form', :object => f %>
   <%= f.submit_area do %>

@@ -21,7 +21,11 @@ class User < ActiveRecord::Base
   
   # Can create a club if less than 5
   def can_create_club?
-    clubs.count <= MAX_CLUB_COUNT
+    !max_clubs_reached?
+  end
+
+  def max_clubs_reached?
+    clubs.count >= MAX_CLUB_COUNT
   end
   
   # Gets the ful name of the user in the format of "FirstName LastName"
