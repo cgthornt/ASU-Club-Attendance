@@ -31,6 +31,12 @@ namespace :deploy do
    task :restart, :roles => :app, :except => { :no_release => true } do
      run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
    end
+
+   desc "Correctly cleans up old releases"
+   task :cleanup, :except => { :no_release => true } do
+     count = fetch(:keep_releases, 5).to_i
+     run "ls -1dt #{releases_path}/* | tail -n +#{count + 1} | #{sudo} xargs rm -rf"
+   end
 end
 
 require "bundler/capistrano"
