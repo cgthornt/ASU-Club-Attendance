@@ -15,17 +15,17 @@
 <body>
 
 <div class="container">
+  <%= yield %>
   <% if flash.any? %>
-  <div id="flashes">
-  <% flash.each do |severity,message| %>
-    <div class="alert alert-<%= severity %>">
-      <button class="close" data-dismiss="alert">&times;</button>
-      <%= message %>
+    <div id="flashes">
+      <% flash.each do |severity,message| %>
+        <div class="alert alert-<%= severity %>">
+          <button class="close" data-dismiss="alert">&times;</button>
+          <%= message %>
+        </div>
+      <% end %>
     </div>
   <% end %>
-  </div>
-  <% end %>
-  <%= yield %>
 </div>
 </body>
 </html>
