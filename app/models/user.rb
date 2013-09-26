@@ -13,7 +13,9 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   
   validates_presence_of :first_name, :last_name
-  
+
+  has_many :clubs_users, dependent: :delete_all
+
   belongs_to :role
   has_many :clubs
   

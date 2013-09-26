@@ -75,6 +75,9 @@ Clubtrack::Application.configure do
   config.action_mailer.sendmail_settings = { 
     :location       => '/usr/sbin/sendmail', 
     :arguments      => '-i -t -f do-not-reply@clubtrack.cgthornt.com'
-  } 
+  }
+
+
+  config.eager_load = true
   
 end

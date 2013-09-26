@@ -22,6 +22,18 @@ class ClubsController < ApplicationController
     session[:club_id] = @club.id
   end
 
+  def edit
+    add_breadcrumb @club.name, @club
+  end
+
+  def update
+    if @club.update_attributes params[:club]
+      flash[:success] = 'Club updated successfully!'
+      return redirect_to edit_club_path(@club)
+    end
+    render action: :edit
+  end
+
 
   def destroy
     if @club.destroy

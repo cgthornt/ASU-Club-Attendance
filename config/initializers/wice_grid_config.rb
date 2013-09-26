@@ -19,7 +19,7 @@ if defined?(Wice::Defaults)
   Wice::Defaults::CUSTOM_FILTER_ALL_LABEL = '--'
 
   # A list of classes for the table tag of the grid
-  Wice::Defaults::DEFAULT_TABLE_CLASSES = ['table', 'table-striped', 'table-condensed']
+  Wice::Defaults::DEFAULT_TABLE_CLASSES = ['table', 'table-bordered', 'table-striped']
 
   # Allow switching between a single and multiple selection modes in custom filters (dropdown boxes)
   Wice::Defaults::ALLOW_MULTIPLE_SELECTION = true
@@ -119,6 +119,11 @@ if defined?(Wice::Defaults)
       Time.parse(datetime_string)
     end
   }
+
+  # The range of years to display in jQuery Datepicker.
+  # It can always be changed dynamically with the following javascript:
+  #  $( ".hasDatepicker" ).datepicker( "option", "yearRange", "2000:2042" );
+  Wice::Defaults::DATEPICKER_YEAR_RANGE = (from = Date.current.year - 10).to_s + ':' + (from + 15).to_s
 
 
   # With Calendar helpers enabled the parameter sent is the string displayed. This lambda will be given a date string in the

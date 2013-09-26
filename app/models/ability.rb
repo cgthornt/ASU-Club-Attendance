@@ -36,12 +36,30 @@ class Ability
         user.role = Role.where(:system_name => "club_admin").first
         user.save!
       end
-      
+
+
       m = "can_" + user.role.system_name
       send(m) if respond_to?(m)
+      can_default
     end
   end
-  
+
+
+  def can_default
+    alias_action :view, :create, :read, :update, :to => :manage_without_destroy
+    club_ids = user.clubs_users.pluck(:club_id)
+
+    can :manage_without_destroy, Club, id: club_ids
+
+    can :manage, Event.includes(club: :clubs_users).references(:clubs_users) do |event|
+      event.club.clubs_users.where(user_id: user.id).any?
+    end
+
+    can :manage, Member.includes(club: :clubs_users).references(:clubs_users) do |member|
+      member.club.clubs_users.where(user_id: user.id).any?
+    end
+
+  end
   
   # Manage clubs
   def can_club_admin

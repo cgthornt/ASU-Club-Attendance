@@ -4,7 +4,7 @@ gem 'rails', '4.0.0'
 ruby '2.0.0'
 
 
-gem 'mysql2', '0.3.12'
+gem 'mysql2', '0.3.13'
 gem 'json'
 
 # Gems used only for assets and not required
@@ -24,7 +24,7 @@ end
 
 
 gem 'jquery-rails'
-gem 'cancan'
+gem 'cancan', '~> 1.6.10'
 gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'settingslogic'
@@ -53,6 +53,8 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 
 gem 'wice_grid'
+
+gem 'simple_form'
 
 group :development do
   gem 'capistrano'

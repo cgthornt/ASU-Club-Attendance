@@ -1,0 +1,26 @@
+= page_title 'Edit Club', @club.name
+= pretty_form_for @club do |f|
+  = render partial: 'form', object: f
+
+  %h3 Other Admins
+  %p These people have access to the club. Check the box to remove them.
+
+  %ul{style: 'list-style: none'}
+  = f.fields_for :clubs_users do |u|
+    %li{ style: 'list-style:none;vertical-align:middle;margin-left:15px'}
+      %label.checkbox
+        = u.check_box :_destroy
+        = u.object.user.full_name
+        = " / #{u.object.role}"
+
+
+  %p Add a person by entering their <b>email address</b>:
+
+  .control-group
+    = f.label :add_officer_email, class: 'control-label'
+    .controls
+      = f.text_field :add_officer_email
+
+  .form-actions
+    = link_to 'Cancel', @club, class: 'btn'
+    = f.submit 'Submit', class: 'btn btn-primary'

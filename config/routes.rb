@@ -3,7 +3,7 @@ Clubtrack::Application.routes.draw do
   
   resources :users, :clubs, :members
   resources :events do
-    collection do
+    member do
       get :user_lookup, :attendance
       post :submit_attendance
     end

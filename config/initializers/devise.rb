@@ -6,6 +6,9 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
   config.mailer_sender = "do-not-reply@clubtrack.cgthornt.com"
 
+
+  config.secret_key = '69e1f142890d7c27b96ff5b7de5e9fad6b8ce8ebf430c01e55691d4d209df5c160041c65dab2ddede952617df28fcb85e27e664a159167970191f95bdf935514'
+
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
 
