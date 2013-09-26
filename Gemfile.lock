@@ -190,6 +190,7 @@ GEM
       rack (>= 1.0)
     wice_grid (3.3.1)
       kaminari (>= 0.13.0)
+    yui-compressor (0.11.0)
 
 PLATFORMS
   ruby
@@ -226,3 +227,4 @@ DEPENDENCIES
   turbolinks
   uglifier
   wice_grid
+  yui-compressor

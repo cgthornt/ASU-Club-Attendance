@@ -1,3 +1,5 @@
 .idea
 tmp/*
 log/*
+public/assets
+public/system

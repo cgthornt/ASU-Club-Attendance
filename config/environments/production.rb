@@ -20,6 +20,9 @@ Clubtrack::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  config.assets.css_compressor = :yui
+  config.assets.js_compressor = :uglifier
+
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 

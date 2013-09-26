@@ -20,6 +20,7 @@ group :assets do
   gem "therubyracer", :require => 'v8'
 
   gem 'uglifier'
+  gem 'yui-compressor'
 end
 
 
