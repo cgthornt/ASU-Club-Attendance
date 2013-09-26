@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  has_paper_trail
   belongs_to :club
   has_and_belongs_to_many :members, :join_table => 'attendances'
   has_many :attendances, dependent: :destroy

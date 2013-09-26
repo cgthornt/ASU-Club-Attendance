@@ -1,6 +1,7 @@
 # ClubsUser
 # @author Christopher Thornton <cthornton@flexwage.com>
 class ClubsUser < ActiveRecord::Base
+  has_paper_trail
   belongs_to :club
   belongs_to :user
 

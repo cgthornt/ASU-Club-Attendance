@@ -54,6 +54,8 @@ gem 'jquery-turbolinks'
 
 gem 'wice_grid'
 
+gem 'paper_trail'
+
 gem 'simple_form'
 
 group :development do
